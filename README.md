@@ -1,10 +1,15 @@
-# RAG-Notion
+# Description
+The technology of Retrieval-Augmented Generation (RAG) using Large Language Models (LLMs) has been gaining popularity recently. To deepen my understanding of this field, I decided to create a simple desktop application for RAG using Notion as a dataset. Notion is a tool I frequently use for taking notes and studying, making it the perfect choice for this project.
+
+# Technologies & Env
+- Python 3.11
+- Notion API
+- LangChang
+- Streamlit 
+- CI (Lint)
+  
+# Result
 
 
-# Introduction
 
-
-# Technologies
-
-
-# 
+# Let's get started!
