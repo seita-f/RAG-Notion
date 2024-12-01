@@ -7,7 +7,8 @@ Additionally, I set a restriction on not spending any money during the app devel
 - Notion API
 - Phi 1.5 (LLM)
 - LangChang
-- Streamlit 
+- Qdrant (Vector DB)
+- Streamlit (UI)
 - Lint (CI)
 
   
