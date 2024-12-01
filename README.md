@@ -5,9 +5,11 @@ Additionally, I set a restriction on not spending any money during the app devel
 # Technologies & Env
 - Python 3.11
 - Notion API
+- Phi 1.5 (LLM)
 - LangChang
 - Streamlit 
-- CI (Lint)
+- Lint (CI)
+
   
 # Result
 
