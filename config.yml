@@ -1,1 +1,14 @@
-notion_api: ""
+# Notion API info
+NOTION:
+  API_URL: "https://api.notion.com/v1/blocks"
+  VERSION: "2022-06-28"
+  API_KEY: "your_api_token"
+
+  # www.notion.so/workspace/Page-Name-<page_id>
+  PAGE_IDS: [
+    "your_page_id",
+    "your_page_id",
+    "your_page_id",
+  ]
+
+
