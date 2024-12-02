@@ -2,12 +2,8 @@ import requests
 import yaml
 import json
 import unicodedata
+import rag_utils import load_config
 
-
-# YAMLファイルを読み込む
-def load_config(file_path):
-    with open(file_path, "r") as file:
-        return yaml.safe_load(file)
 
 # Notionページコンテンツを取得（ページング対応）
 def get_all_blocks(page_id, headers, notion_api_url):

@@ -9,6 +9,9 @@ NOTION:
     "your_page_id",
     "your_page_id",
     "your_page_id",
-  ]
+  ] 
 
+LLM_MODEL:
+  PHI:    
+    LOCAL_DIR: "./phi-1_5_model"
 
