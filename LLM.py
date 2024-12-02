@@ -1,48 +1,56 @@
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from utils import load_config
+from rag_utils.utils import load_config
 
 
 # YAMLファイルを読み込む
 config = load_config("config.yml")
-
-
 local_dir = config["LLM_MODEL"]["PHI"]["LOCAL_DIR"]
+model_path = config["LLM_MODEL"]["PHI"]["MODEL_PATH"]
 
-# デバイスの選択
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # モデルとトークナイザーをロード
-model = AutoModelForCausalLM.from_pretrained(
-    "microsoft/phi-1_5", 
-    trust_remote_code=True, 
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-    cache_dir=local_dir
-).to(device)
+# model = AutoModelForCausalLM.from_pretrained(
+#     "microsoft/phi-1_5", 
+#     trust_remote_code=True, 
+#     torch_dtype=torch.float32,
+#     cache_dir=local_dir
+# )
 
-tokenizer = AutoTokenizer.from_pretrained(
-    "microsoft/phi-1_5", 
-    trust_remote_code=True, 
-    cache_dir=local_dir
+# tokenizer = AutoTokenizer.from_pretrained(
+#     "microsoft/phi-1_5", 
+#     trust_remote_code=True, 
+#     cache_dir=local_dir
+# )
+
+model = AutoModelForCausalLM.from_pretrained(
+    model_path,
+    trust_remote_code=True,
+    torch_dtype=torch.float32
 )
 
-# 入力データをトークナイズしてデバイスに移動
+tokenizer = AutoTokenizer.from_pretrained(
+    model_path,
+    trust_remote_code=True
+)
+
+print("loaded model and tokenizer")
+
 inputs = tokenizer(
-    '''```python
-
-def print_prime(n):
-
-   """
-
-   Print all primes between 1 and n
-
-   """''', 
+    '''
+    What is a capital city of Poland?
+    ''', 
     return_tensors="pt"
-).to(device)
+)
+
+# CPUでは.to(device)を省略（CPUで動作）
+print("inputs is excecuted")
 
 # テキスト生成
 outputs = model.generate(**inputs, max_length=200)
 
+print("outputs is executed")
+
 # 結果をデコードして表示
-text = tokenizer.batch_decode(outputs)[0]
+text = tokenizer.batch_decode(outputs, skip_special_tokens=True)[0]
 print(text)
